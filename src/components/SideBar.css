@@ -1,0 +1,119 @@
+.sidebar-container {
+    width: 30%;
+    max-width: 700px;
+    height: auto;
+    min-height: 100vh;
+    text-align: center;
+    background: rgba(190, 187, 187, 0.7);
+    background: rgb(46, 45, 45);
+    padding: 0.5em 0;
+    overflow: hidden;
+    color: white;
+}
+.ham-menu {
+    position: absolute;
+    font-size: 1.5rem;
+    left: 0.8em;
+    left: 1.15em;
+    cursor: pointer;
+}
+.sidebar-container img {
+    width: 50%;
+    max-width: 150px;
+    border-radius: 50%;
+    border: 4px solid rgb(0, 0, 0);
+    padding: 0.1em;
+    cursor: pointer;
+}
+
+.sidebar-container ul {
+    margin-top: 2em;
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.sidebar-container ul li {
+    display: flex;
+    align-items: center;
+    padding: 1.1em 1.5em;
+}
+.sidebar-container.active ul li p {
+    display: none;
+}
+
+.sidebar-container ul > li:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+}
+.sidebar-container ul > li:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-container ul .fas {
+    margin-right: 1em;
+    font-size: 1.3rem;
+}
+
+.playlist-holder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.playlist-holder .playlist {
+    flex: 2;
+}
+.playlist-holder .add-playlist {
+    padding: 1.1em 1.5em;
+    text-align: center;
+}
+.add-playlist .fas.fa-plus {
+    margin: 0;
+}
+
+.sidebar-container ul li:hover,
+.playlist-holder .add-playlist:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* styling for mobile view */
+
+.sidebar-container.active {
+    width: 75px;
+}
+.sidebar-container.active .profile-container {
+    text-align: left;
+    padding: 3em 0 0 1.5em;
+}
+.sidebar-container.active img {
+    width: 10%;
+    min-width: 30px;
+    border: 2px solid rgb(0, 0, 0);
+}
+.sidebar-container.active h2 {
+    display: none;
+}
+.sidebar-container.active ul {
+    margin-top: 1em;
+}
+.sidebar-container.active .playlist-holder {
+    flex-direction: column;
+    align-items: flex-start;
+}
+.sidebar-container.active .created-playlist {
+    display: none;
+}
+
+/* styling for mobile view ends here */
+
+@media screen and (max-width: 500px) {
+    .sidebar-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 5;
+    }
+    .sidebar-container.active {
+        position: relative;
+    }
+}

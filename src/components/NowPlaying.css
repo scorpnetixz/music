@@ -1,0 +1,44 @@
+.card-container {
+    width: 100%;
+    height: 100%;
+}
+
+.card-holder {
+    padding: 1.2em 0.5em;
+    max-width: 300px;
+    margin: auto;
+    border-radius: 0.5em;
+    outline: none;
+    border: none;
+    background: rgb(29, 29, 29);
+    box-shadow: -7px -7px 20px rgb(44, 44, 44), 7px 7px 20px rgb(0, 0, 0);
+    color: white;
+}
+
+.card-holder img {
+    border-radius: 0.5em;
+    width: 75%;
+    height: 150px;
+    margin-bottom: 0.7em;
+}
+
+.card-holder p {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.player-details > p:first-child {
+    margin-bottom: 0.5em;
+    font-weight: 900;
+}
+
+.card-holder .player-details p {
+    font-size: 0.8rem;
+}
+
+@media screen and (max-width: 500px) {
+    .card-holder {
+        width: 100%;
+        margin-top: 1em;
+    }
+}
