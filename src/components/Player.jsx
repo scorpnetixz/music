@@ -81,6 +81,7 @@ let Player = ({
             <div className="player-holder-container">
                 <div className={`player-holder`}>
                     {/* this feature will be added on future */}
+                    {/* in future */}
                     {/* <div
                         className={`random ${shuffle ? "active" : ""}`}
                         onClick={toggleShuffle}
