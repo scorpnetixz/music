@@ -1,7 +1,13 @@
 import "./SideBar.css";
 import { useState } from "react";
-let SideBar = ({ onAllSongs, onNowPlaying, onFavSong }) => {
-    let [mobView, setMobView] = useState(false);
+let SideBar = ({
+    onAllSongs,
+    onNowPlaying,
+    onFavSong,
+    mobView,
+    setMobView,
+}) => {
+    // let [mobView, setMobView] = useState(false);
 
     // toggle sidebar according to width of window
     let mobileView = () => {

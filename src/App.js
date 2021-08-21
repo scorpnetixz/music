@@ -47,6 +47,7 @@ function App() {
     let [duration, setDuration] = useState(0);
     let [currentTime, setCurrentTime] = useState(0);
     let [mute, setMute] = useState(false);
+    let [mobView, setMobView] = useState(false);
 
     // References
 
@@ -118,13 +119,24 @@ function App() {
     // toggling category
     let toggleAllSongsComp = () => {
         setShowHideComp("allSongs");
+        hideShowOnMobile();
     };
     let toggleNowPlayingComp = () => {
         setShowHideComp("nowPlaying");
+        hideShowOnMobile();
     };
 
     let toggleFavSongComp = () => {
         setShowHideComp("favSong");
+        hideShowOnMobile();
+    };
+
+    // hide side bar on click on mobile devices
+
+    let hideShowOnMobile = () => {
+        if (window.innerWidth < 500) {
+            setMobView(true);
+        }
     };
 
     let togglePlayPause = () => {
@@ -186,6 +198,8 @@ function App() {
                 onNowPlaying={toggleNowPlayingComp}
                 onAllSongs={toggleAllSongsComp}
                 onFavSong={toggleFavSongComp}
+                mobView={mobView}
+                setMobView={setMobView}
             />
             <div className="main-holder">
                 <Main
