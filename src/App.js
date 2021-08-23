@@ -40,8 +40,10 @@ function App() {
         },
     ]);
     let [currentSongIndex, setCurrentSongIndex] = useState(0);
+    let [currentFavSongIndex, setCurrentFavSongIndex] = useState(0);
     let [favSong, setFavSong] = useState([]);
     let [nextSongIndex, setNextSongIndex] = useState(0);
+    let [nextFavSongIndex, setNextFavSongIndex] = useState(0);
     let [playPause, setPlayPause] = useState(false);
     let [showHideComp, setShowHideComp] = useState("nowPlaying");
     let [duration, setDuration] = useState(0);
@@ -158,22 +160,34 @@ function App() {
 
     let handleVolume = () => {
         audio.current.volume = sliderVolRef.current.value / 100;
+        setMute(false);
     };
 
     // code for next and prev song
 
     useEffect(() => {
-        setNextSongIndex(() => {
-            if (currentSongIndex + 1 > songs.length - 1) {
-                return (currentSongIndex = 0);
-            } else {
-                return currentSongIndex + 1;
-            }
-        });
-    }, [currentSongIndex]);
+        if (showHideComp === "favSong") {
+            setNextFavSongIndex(() => {
+                if (currentFavSongIndex + 1 > favSong.length - 1) {
+                    return (currentFavSongIndex = 0);
+                } else {
+                    return currentFavSongIndex + 1;
+                }
+            });
+        } else {
+            setNextSongIndex(() => {
+                if (currentSongIndex + 1 > songs.length - 1) {
+                    return (currentSongIndex = 0);
+                } else {
+                    return currentSongIndex + 1;
+                }
+            });
+        }
+        console.log("index", currentSongIndex);
+    }, [currentSongIndex, currentFavSongIndex]);
 
     // toggling fav song styling color for heart
-
+    useEffect(() => {}, [favSong]);
     let toggleFavSong = (id) => {
         let updateFavSong = songs.map((song) => {
             if (song.id === id) {
@@ -182,6 +196,10 @@ function App() {
             return song;
         });
         setSongs(updateFavSong);
+        callSetFavSong();
+    };
+
+    let callSetFavSong = () => {
         setFavSong(
             songs.filter((song) => {
                 if (song.isFav) {
@@ -207,27 +225,29 @@ function App() {
                     currentSongIndex={currentSongIndex}
                     setCurrentSongIndex={setCurrentSongIndex}
                     nextSongIndex={nextSongIndex}
+                    currentFavSongIndex={currentFavSongIndex}
+                    setCurrentFavSongIndex={setCurrentFavSongIndex}
                     showHideComp={showHideComp}
                     onAllSongs={toggleAllSongsComp}
                     onNowPlaying={toggleNowPlayingComp}
                     onFavSong={toggleFavSongComp}
-                    duration={duration}
-                    convertTime={convertTime}
-                    audio={audio}
-                    onLoadedMetadata={onLoadedMetadata}
                     playPause={playPause}
                     setPlayPause={setPlayPause}
                     toggleFavSong={toggleFavSong}
                     favSong={favSong}
+                    // duration={duration}
+                    // convertTime={convertTime}
+                    // audio={audio}
+                    // onLoadedMetadata={onLoadedMetadata}
                 />
                 <Player
                     setCurrentSongIndex={setCurrentSongIndex}
                     currentSongIndex={currentSongIndex}
-                    nextSongIndex={nextSongIndex}
+                    currentFavSongIndex={currentFavSongIndex}
+                    setCurrentFavSongIndex={setCurrentFavSongIndex}
                     songs={songs}
                     onPlayPause={togglePlayPause}
                     playPause={playPause}
-                    setPlayPause={setPlayPause}
                     audio={audio}
                     onLoadedMetadata={onLoadedMetadata}
                     convertTime={convertTime}
@@ -241,6 +261,10 @@ function App() {
                     toggleVol={toggleVol}
                     handleVolume={handleVolume}
                     sliderVolRef={sliderVolRef}
+                    showHideComp={showHideComp}
+                    favSong={favSong}
+                    // nextSongIndex={nextSongIndex}
+                    // setPlayPause={setPlayPause}
                 />
             </div>
         </div>

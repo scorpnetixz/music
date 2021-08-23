@@ -3,6 +3,8 @@ import "./Player.css";
 let Player = ({
     setCurrentSongIndex,
     currentSongIndex,
+    currentFavSongIndex,
+    setCurrentFavSongIndex,
     songs,
     onPlayPause,
     playPause,
@@ -19,31 +21,58 @@ let Player = ({
     toggleVol,
     handleVolume,
     sliderVolRef,
+    showHideComp,
+    favSong,
 }) => {
     // let [shuffle, setShuffle] = useState(false);
     // for next and prev song
     let skipSong = (next = true) => {
         if (next) {
-            setCurrentSongIndex(() => {
-                let temp = currentSongIndex;
+            if (showHideComp === "favSong") {
+                setCurrentFavSongIndex(() => {
+                    let temp = currentFavSongIndex;
 
-                temp++;
+                    temp++;
 
-                if (temp > songs.length - 1) {
-                    temp = 0;
-                }
-                return temp;
-            });
+                    if (temp > favSong.length - 1) {
+                        temp = 0;
+                    }
+                    return temp;
+                });
+            } else {
+                setCurrentSongIndex(() => {
+                    let temp = currentSongIndex;
+
+                    temp++;
+
+                    if (temp > songs.length - 1) {
+                        temp = 0;
+                    }
+                    return temp;
+                });
+            }
         } else {
-            setCurrentSongIndex(() => {
-                let temp = currentSongIndex;
-                temp--;
+            if (showHideComp === "favSong") {
+                setCurrentFavSongIndex(() => {
+                    let temp = currentFavSongIndex;
+                    temp--;
 
-                if (temp < 0) {
-                    temp = songs.length - 1;
-                }
-                return temp;
-            });
+                    if (temp < 0) {
+                        temp = favSong.length - 1;
+                    }
+                    return temp;
+                });
+            } else {
+                setCurrentSongIndex(() => {
+                    let temp = currentSongIndex;
+                    temp--;
+
+                    if (temp < 0) {
+                        temp = songs.length - 1;
+                    }
+                    return temp;
+                });
+            }
         }
     };
 
@@ -58,13 +87,23 @@ let Player = ({
 
     return (
         <div className="player-container">
-            <audio
-                src={songs[currentSongIndex].songURL}
-                ref={audio}
-                loop="true"
-                preload="metadata"
-                onLoadedMetadata={onLoadedMetadata}
-            ></audio>
+            {showHideComp === "favSong" && favSong.length > 0 ? (
+                <audio
+                    src={favSong[currentFavSongIndex].songURL}
+                    ref={audio}
+                    loop={true}
+                    preload="metadata"
+                    onLoadedMetadata={onLoadedMetadata}
+                ></audio>
+            ) : (
+                <audio
+                    src={songs[currentSongIndex].songURL}
+                    ref={audio}
+                    loop={true}
+                    preload="metadata"
+                    onLoadedMetadata={onLoadedMetadata}
+                ></audio>
+            )}
             <div className="duration-holder">
                 <div className="current-time">{convertTime(currentTime)}</div>
                 <input

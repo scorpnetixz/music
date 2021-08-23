@@ -23,7 +23,7 @@ let AllSongs = ({
     };
     return (
         <ul className={`music-list`}>
-            <li>
+            <div>
                 {songs.map((song, index) => {
                     return (
                         <li
@@ -60,7 +60,7 @@ let AllSongs = ({
                         </li>
                     );
                 })}
-            </li>
+            </div>
         </ul>
     );
 };

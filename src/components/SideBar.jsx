@@ -1,5 +1,4 @@
 import "./SideBar.css";
-import { useState } from "react";
 let SideBar = ({
     onAllSongs,
     onNowPlaying,

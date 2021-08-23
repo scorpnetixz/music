@@ -1,6 +1,6 @@
 let FavSongs = ({
-    currentSongIndex,
-    setCurrentSongIndex,
+    currentFavSongIndex,
+    setCurrentFavSongIndex,
     favSong,
     toggleFavSong,
     setPlayPause,
@@ -8,32 +8,32 @@ let FavSongs = ({
 }) => {
     // play song from favorite category list
     let playSelected = (id) => {
-        console.log(id, currentSongIndex);
-        if (id === currentSongIndex) {
+        console.log(id, currentFavSongIndex);
+        if (id === currentFavSongIndex) {
             if (!playPause) {
                 setPlayPause(true);
             } else {
                 setPlayPause(false);
             }
         } else {
-            setCurrentSongIndex(id);
+            setCurrentFavSongIndex(id);
             setPlayPause(true);
         }
     };
     return (
         <ul className={`music-list`}>
-            <li>
+            <div>
                 {favSong.map((song, index) => {
                     return (
                         <div
                             key={song.id}
                             className={`list-holder ${
-                                currentSongIndex === index + 1 ? "active" : ""
+                                currentFavSongIndex === index ? "active" : ""
                             }`}
                         >
                             <div
                                 className="music-title"
-                                onClick={() => playSelected(song.id - 1)}
+                                onClick={() => playSelected(index)}
                             >
                                 <img src={song.imgURL} alt="" />
 
@@ -59,7 +59,7 @@ let FavSongs = ({
                         </div>
                     );
                 })}
-            </li>
+            </div>
         </ul>
     );
 };

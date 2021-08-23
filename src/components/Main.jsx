@@ -7,15 +7,12 @@ let Main = ({
     currentSongIndex,
     setCurrentSongIndex,
     nextSongIndex,
+    currentFavSongIndex,
+    setCurrentFavSongIndex,
     showHideComp,
     onAllSongs,
     onNowPlaying,
     onFavSong,
-    duration,
-    convertTime,
-    audio,
-    onLoadedMetadata,
-    onPlayPause,
     playPause,
     setPlayPause,
     toggleFavSong,
@@ -62,34 +59,33 @@ let Main = ({
                 )}
                 {showHideComp === "allSongs" && (
                     <AllSongs
+                        songs={songs}
                         currentSongIndex={currentSongIndex}
                         setCurrentSongIndex={setCurrentSongIndex}
-                        songs={songs}
                         toggleFavSong={toggleFavSong}
-                        duration={duration}
-                        convertTime={convertTime}
-                        audio={audio}
-                        onLoadedMetadata={onLoadedMetadata}
                         playPause={playPause}
                         setPlayPause={setPlayPause}
-                        onPlayPause={onPlayPause}
+                        // duration={duration}
+                        // convertTime={convertTime}
+                        // audio={audio}
+                        // onLoadedMetadata={onLoadedMetadata}
+                        // onPlayPause={onPlayPause}
                     />
                 )}
 
                 {showHideComp === "favSong" && (
                     <FavSongs
-                        currentSongIndex={currentSongIndex}
-                        setCurrentSongIndex={setCurrentSongIndex}
-                        songs={songs}
-                        toggleFavSong={toggleFavSong}
-                        duration={duration}
-                        convertTime={convertTime}
-                        audio={audio}
-                        onLoadedMetadata={onLoadedMetadata}
-                        playPause={playPause}
-                        setPlayPause={setPlayPause}
-                        onPlayPause={onPlayPause}
+                        currentFavSongIndex={currentFavSongIndex}
+                        setCurrentFavSongIndex={setCurrentFavSongIndex}
                         favSong={favSong}
+                        toggleFavSong={toggleFavSong}
+                        setPlayPause={setPlayPause}
+                        playPause={playPause}
+                        // duration={duration}
+                        // convertTime={convertTime}
+                        // audio={audio}
+                        // onLoadedMetadata={onLoadedMetadata}
+                        // onPlayPause={onPlayPause}
                     />
                 )}
             </div>
