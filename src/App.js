@@ -243,10 +243,7 @@ function App() {
 
     useEffect(() => {
         if (showHideComp === "favSong") {
-            if (
-                favSong.length === currentFavSongIndex &&
-                currentFavSongIndex < 0
-            ) {
+            if (favSong.length === currentFavSongIndex) {
                 console.log("equal");
                 setCurrentFavSongIndex(() => {
                     console.log(
@@ -255,7 +252,7 @@ function App() {
                         "index: ",
                         currentFavSongIndex
                     );
-                    if (currentFavSongIndex < 0) {
+                    if (currentFavSongIndex <= 0) {
                         return (currentFavSongIndex = 0);
                     } else {
                         console.log(
