@@ -244,24 +244,12 @@ function App() {
                     if (currentFavSongIndex <= 0) {
                         return (currentFavSongIndex = 0);
                     } else {
-                        console.log(
-                            "length",
-                            favSong.length,
-                            "index : ",
-                            currentFavSongIndex - 1
-                        );
                         return currentFavSongIndex - 1;
                     }
                 });
             }
         }
     }, [songs, favSong, currentFavSongIndex]);
-
-    // toggling fav song styling color for heart
-
-    // useEffect(() => {
-    //     console.log("fsong : ", favSong);
-    // }, [songs]);
 
     let toggleFavSong = (id) => {
         let updateFavSong = songs.map((song) => {

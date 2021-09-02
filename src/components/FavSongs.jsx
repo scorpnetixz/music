@@ -8,7 +8,6 @@ let FavSongs = ({
 }) => {
     // play song from favorite category list
     let playSelected = (id) => {
-        console.log(id, currentFavSongIndex);
         if (id === currentFavSongIndex) {
             if (!playPause) {
                 setPlayPause(true);
