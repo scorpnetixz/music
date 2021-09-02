@@ -251,7 +251,13 @@ function App() {
                     if (currentFavSongIndex < 0) {
                         return (currentFavSongIndex = 0);
                     } else {
-                        return currentFavSongIndex--;
+                        console.log(
+                            "l",
+                            favSong.length,
+                            "i: ",
+                            currentFavSongIndex - 1
+                        );
+                        return currentFavSongIndex - 1;
                     }
                 });
             }
