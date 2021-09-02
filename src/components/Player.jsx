@@ -27,7 +27,8 @@ let Player = ({
         <div className="player-container">
             {showHideComp === "favSong" &&
             favSong.length > 0 &&
-            favSong.length !== currentFavSongIndex ? (
+            favSong.length !== currentFavSongIndex &&
+            favSong !== undefined ? (
                 <audio
                     src={favSong[currentFavSongIndex].songURL}
                     ref={audio}
