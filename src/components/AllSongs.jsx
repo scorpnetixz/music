@@ -9,7 +9,6 @@ let AllSongs = ({
 }) => {
     // play songs from all songs list
     let playSelected = (id) => {
-        console.log(id, currentSongIndex);
         if (id === currentSongIndex) {
             if (!playPause) {
                 setPlayPause(true);

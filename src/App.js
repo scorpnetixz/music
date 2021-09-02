@@ -132,10 +132,6 @@ function App() {
     };
 
     let toggleFavSongComp = () => {
-        console.log("index", currentFavSongIndex);
-        if (favSong.length > 0) {
-            console.log("url", favSong[currentFavSongIndex].songURL);
-        }
         setShowHideComp("favSong");
         hideShowOnMobile();
     };
@@ -244,23 +240,10 @@ function App() {
     useEffect(() => {
         if (showHideComp === "favSong") {
             if (favSong.length === currentFavSongIndex) {
-                console.log("equal");
                 setCurrentFavSongIndex(() => {
-                    console.log(
-                        "lenght",
-                        favSong.length,
-                        "index: ",
-                        currentFavSongIndex
-                    );
                     if (currentFavSongIndex <= 0) {
                         return (currentFavSongIndex = 0);
                     } else {
-                        console.log(
-                            "l",
-                            favSong.length,
-                            "i: ",
-                            currentFavSongIndex--
-                        );
                         return currentFavSongIndex--;
                     }
                 });
@@ -269,10 +252,6 @@ function App() {
     }, [favSong, currentFavSongIndex]);
 
     // toggling fav song styling color for heart
-
-    useEffect(() => {
-        console.log("songs: ", favSong);
-    }, [songs]);
 
     let toggleFavSong = (id) => {
         let updateFavSong = songs.map((song) => {
