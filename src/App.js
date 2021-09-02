@@ -132,6 +132,10 @@ function App() {
     };
 
     let toggleFavSongComp = () => {
+        console.log("index", currentFavSongIndex);
+        if (favSong.length > 0) {
+            console.log("url", favSong[currentFavSongIndex].songURL);
+        }
         setShowHideComp("favSong");
         hideShowOnMobile();
     };
