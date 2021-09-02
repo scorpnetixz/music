@@ -255,9 +255,9 @@ function App() {
                             "l",
                             favSong.length,
                             "i: ",
-                            currentFavSongIndex - 1
+                            currentFavSongIndex--
                         );
-                        return currentFavSongIndex - 1;
+                        return currentFavSongIndex--;
                     }
                 });
             }
