@@ -266,6 +266,10 @@ function App() {
 
     // toggling fav song styling color for heart
 
+    useEffect(() => {
+        console.log("songs: ", favSong);
+    }, [songs]);
+
     let toggleFavSong = (id) => {
         let updateFavSong = songs.map((song) => {
             if (song.id === id) {
