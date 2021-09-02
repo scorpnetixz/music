@@ -1,10 +1,8 @@
 import "./Player.css";
 
 let Player = ({
-    setCurrentSongIndex,
     currentSongIndex,
     currentFavSongIndex,
-    setCurrentFavSongIndex,
     songs,
     onPlayPause,
     playPause,
@@ -23,71 +21,13 @@ let Player = ({
     sliderVolRef,
     showHideComp,
     favSong,
+    skipSong,
 }) => {
-    // let [shuffle, setShuffle] = useState(false);
-    // for next and prev song
-    let skipSong = (next = true) => {
-        if (next) {
-            if (showHideComp === "favSong") {
-                setCurrentFavSongIndex(() => {
-                    let temp = currentFavSongIndex;
-
-                    temp++;
-
-                    if (temp > favSong.length - 1) {
-                        temp = 0;
-                    }
-                    return temp;
-                });
-            } else {
-                setCurrentSongIndex(() => {
-                    let temp = currentSongIndex;
-
-                    temp++;
-
-                    if (temp > songs.length - 1) {
-                        temp = 0;
-                    }
-                    return temp;
-                });
-            }
-        } else {
-            if (showHideComp === "favSong") {
-                setCurrentFavSongIndex(() => {
-                    let temp = currentFavSongIndex;
-                    temp--;
-
-                    if (temp < 0) {
-                        temp = favSong.length - 1;
-                    }
-                    return temp;
-                });
-            } else {
-                setCurrentSongIndex(() => {
-                    let temp = currentSongIndex;
-                    temp--;
-
-                    if (temp < 0) {
-                        temp = songs.length - 1;
-                    }
-                    return temp;
-                });
-            }
-        }
-    };
-
-    // shuffling song this feature is not included
-    // let toggleShuffle = () => {
-    //     setShuffle(!shuffle);
-    // };
-    // let playSelected = (id) => {
-    //     setCurrentSongIndex(id);
-    //     setPlayPause(!playPause);
-    // };
-
     return (
         <div className="player-container">
-            {showHideComp === "favSong" && favSong.length > 0 ? (
+            {showHideComp === "favSong" &&
+            favSong.length > 0 &&
+            favSong.length !== currentFavSongIndex ? (
                 <audio
                     src={favSong[currentFavSongIndex].songURL}
                     ref={audio}
