@@ -2,7 +2,9 @@ import "./App.css";
 import SideBar from "./components/SideBar";
 import Main from "./components/Main";
 import Player from "./components/Player";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, createContext } from "react";
+
+export const musicContext = createContext(null);
 
 function App() {
     let [songs, setSongs] = useState([
@@ -274,59 +276,50 @@ function App() {
         setFavSong(() => filteredSongs);
     };
     return (
-        <div className="main-container">
-            <SideBar
-                showHideComp={showHideComp}
-                onNowPlaying={toggleNowPlayingComp}
-                onAllSongs={toggleAllSongsComp}
-                onFavSong={toggleFavSongComp}
-                mobView={mobView}
-                setMobView={setMobView}
-            />
-            <div className="main-holder">
-                <Main
-                    songs={songs}
-                    currentSongIndex={currentSongIndex}
-                    setCurrentSongIndex={setCurrentSongIndex}
-                    nextSongIndex={nextSongIndex}
-                    currentFavSongIndex={currentFavSongIndex}
-                    setCurrentFavSongIndex={setCurrentFavSongIndex}
-                    showHideComp={showHideComp}
-                    onAllSongs={toggleAllSongsComp}
-                    onNowPlaying={toggleNowPlayingComp}
-                    onFavSong={toggleFavSongComp}
-                    playPause={playPause}
-                    setPlayPause={setPlayPause}
-                    toggleFavSong={toggleFavSong}
-                    favSong={favSong}
-                />
-                <Player
-                    setCurrentSongIndex={setCurrentSongIndex}
-                    currentSongIndex={currentSongIndex}
-                    currentFavSongIndex={currentFavSongIndex}
-                    setCurrentFavSongIndex={setCurrentFavSongIndex}
-                    songs={songs}
-                    onPlayPause={togglePlayPause}
-                    playPause={playPause}
-                    audio={audio}
-                    onLoadedMetadata={onLoadedMetadata}
-                    convertTime={convertTime}
-                    currentTime={currentTime}
-                    progressBar={progressBar}
-                    changeRange={changeRange}
-                    duration={duration}
-                    backwardFive={backwardFive}
-                    forwardFive={forwardFive}
-                    mute={mute}
-                    toggleVol={toggleVol}
-                    handleVolume={handleVolume}
-                    sliderVolRef={sliderVolRef}
-                    showHideComp={showHideComp}
-                    favSong={favSong}
-                    skipSong={skipSong}
-                />
+        <musicContext.Provider
+            value={{
+                // props for the comp
+                toggleNowPlayingComp,
+                toggleAllSongsComp,
+                toggleFavSongComp,
+                mobView,
+                setMobView,
+                songs,
+                currentSongIndex,
+                setCurrentSongIndex,
+                nextSongIndex,
+                currentFavSongIndex,
+                setCurrentFavSongIndex,
+                showHideComp,
+                playPause,
+                setPlayPause,
+                toggleFavSong,
+                favSong,
+                togglePlayPause,
+                audio,
+                onLoadedMetadata,
+                convertTime,
+                currentTime,
+                progressBar,
+                changeRange,
+                duration,
+                backwardFive,
+                forwardFive,
+                mute,
+                toggleVol,
+                handleVolume,
+                sliderVolRef,
+                skipSong,
+            }}
+        >
+            <div className="main-container">
+                <SideBar />
+                <div className="main-holder">
+                    <Main />
+                    <Player />
+                </div>
             </div>
-        </div>
+        </musicContext.Provider>
     );
 }
 

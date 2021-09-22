@@ -1,5 +1,10 @@
 import "./NowPlaying.css";
-let NowPlaying = ({ nextSongIndex, currentSongIndex, songs }) => {
+import { useContext } from "react";
+import { musicContext } from ".././App.js";
+
+let NowPlaying = () => {
+    const { songs, currentSongIndex, nextSongIndex } = useContext(musicContext);
+
     return (
         <div className="card-container">
             <div className="card-holder">

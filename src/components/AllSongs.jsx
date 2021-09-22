@@ -1,12 +1,17 @@
 import "./AllSongs.css";
-let AllSongs = ({
-    songs,
-    currentSongIndex,
-    setCurrentSongIndex,
-    toggleFavSong,
-    setPlayPause,
-    playPause,
-}) => {
+import { useContext } from "react";
+import { musicContext } from ".././App.js";
+
+let AllSongs = () => {
+    const {
+        songs,
+        currentSongIndex,
+        setCurrentSongIndex,
+        playPause,
+        setPlayPause,
+        toggleFavSong,
+    } = useContext(musicContext);
+
     // play songs from all songs list
     let playSelected = (id) => {
         if (id === currentSongIndex) {

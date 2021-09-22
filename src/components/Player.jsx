@@ -1,28 +1,31 @@
 import "./Player.css";
+import { useContext } from "react";
+import { musicContext } from ".././App.js";
 
-let Player = ({
-    currentSongIndex,
-    currentFavSongIndex,
-    songs,
-    onPlayPause,
-    playPause,
-    audio,
-    onLoadedMetadata,
-    convertTime,
-    currentTime,
-    progressBar,
-    changeRange,
-    duration,
-    backwardFive,
-    forwardFive,
-    mute,
-    toggleVol,
-    handleVolume,
-    sliderVolRef,
-    showHideComp,
-    favSong,
-    skipSong,
-}) => {
+let Player = () => {
+    const {
+        currentSongIndex,
+        currentFavSongIndex,
+        songs,
+        togglePlayPause,
+        playPause,
+        audio,
+        onLoadedMetadata,
+        convertTime,
+        currentTime,
+        progressBar,
+        changeRange,
+        duration,
+        backwardFive,
+        forwardFive,
+        mute,
+        toggleVol,
+        handleVolume,
+        sliderVolRef,
+        showHideComp,
+        favSong,
+        skipSong,
+    } = useContext(musicContext);
     return (
         <div className="player-container">
             {showHideComp === "favSong" &&
@@ -73,7 +76,7 @@ let Player = ({
                     <div onClick={backwardFive}>
                         <i className="fas fa-backward"></i>
                     </div>
-                    <div className="far-play" onClick={onPlayPause}>
+                    <div className="far-play" onClick={togglePlayPause}>
                         <i
                             className={`far ${
                                 !playPause

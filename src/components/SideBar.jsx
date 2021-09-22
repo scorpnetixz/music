@@ -1,14 +1,18 @@
 import "./SideBar.css";
-let SideBar = ({
-    onAllSongs,
-    onNowPlaying,
-    onFavSong,
-    mobView,
-    setMobView,
-}) => {
+import { useContext } from "react";
+import { musicContext } from ".././App.js";
+let SideBar = () => {
     // let [mobView, setMobView] = useState(false);
 
     // toggle sidebar according to width of window
+
+    const {
+        toggleNowPlayingComp,
+        toggleAllSongsComp,
+        toggleFavSongComp,
+        mobView,
+        setMobView,
+    } = useContext(musicContext);
     let mobileView = () => {
         if (window.innerWidth < 960) {
             setMobView(true);
@@ -34,13 +38,13 @@ let SideBar = ({
                 <h2>Scorpnetixz</h2>
             </div>
             <ul>
-                <li onClick={onAllSongs}>
+                <li onClick={toggleAllSongsComp}>
                     <i className="fas fa-music"></i> <p>Songs</p>
                 </li>
-                <li onClick={onFavSong}>
+                <li onClick={toggleFavSongComp}>
                     <i className="fas fa-heart"></i> <p>Favorite</p>
                 </li>
-                <li onClick={onNowPlaying}>
+                <li onClick={toggleNowPlayingComp}>
                     <i className="fas fa-play"></i> <p>Now Playing</p>
                 </li>
 

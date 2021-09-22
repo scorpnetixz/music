@@ -1,11 +1,16 @@
-let FavSongs = ({
-    currentFavSongIndex,
-    setCurrentFavSongIndex,
-    favSong,
-    toggleFavSong,
-    setPlayPause,
-    playPause,
-}) => {
+import { useContext } from "react";
+import { musicContext } from ".././App.js";
+
+let FavSongs = () => {
+    const {
+        currentFavSongIndex,
+        setCurrentFavSongIndex,
+        playPause,
+        setPlayPause,
+        toggleFavSong,
+        favSong,
+    } = useContext(musicContext);
+
     // play song from favorite category list
     let playSelected = (id) => {
         if (id === currentFavSongIndex) {
